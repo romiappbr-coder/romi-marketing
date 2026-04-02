@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romi — Gerenciador de Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══════════════════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">R</div>
+      <div>
+        <div class="logo-text">Romi</div>
+        <div class="logo-sub">Gerenciador de Marketing</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Visão Geral</div>
+      <div class="nav-item" data-page="dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:12px">Estratégias</div>
+      <div class="nav-item" data-page="seo">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">SEO</span>
+      </div>
+      <div class="nav-item" data-page="paid">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-label">Tráfego Pago</span>
+      </div>
+      <div class="nav-item" data-page="content">
+        <span class="nav-icon">✍️</span>
+        <span class="nav-label">Conteúdo</span>
+      </div>
+      <div class="nav-item" data-page="social">
+        <span class="nav-icon">📱</span>
+        <span class="nav-label">Redes Sociais</span>
+      </div>
+      <div class="nav-item" data-page="email">
+        <span class="nav-icon">✉️</span>
+        <span class="nav-label">Email Marketing</span>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:12px">Dados</div>
+      <div class="nav-item" data-page="analytics">
+        <span class="nav-icon">📈</span>
+        <span class="nav-label">Análise de Dados</span>
+      </div>
+      <div class="nav-item" data-page="integrations">
+        <span class="nav-icon">🔗</span>
+        <span class="nav-label">Integrações</span>
+        <span class="nav-badge">6</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      Romi &copy; 2024 · Fortaleza, CE
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════════════════ -->
+  <div class="main">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        <h1 id="header-title">Dashboard</h1>
+        <p id="header-sub">Visão geral do marketing do Romi</p>
+      </div>
+      <div class="header-actions">
+        <div class="integration-status" id="header-int-status">
+          <span class="dot dot-gray"></span> Sem integrações
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="navigate('integrations')">🔗 Integrações</button>
+        <button class="btn btn-primary btn-sm" onclick="navigate('content')">+ Novo Conteúdo</button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+
+      <!-- ================================================
+           DASHBOARD
+      ================================================ -->
+      <div class="page" id="page-dashboard">
+
+        <!-- KPIs -->
+        <div class="section-header">
+          <h2>📊 Métricas Principais</h2>
+          <p>Atualize manualmente suas métricas ou conecte integrações para sincronização automática.</p>
+        </div>
+
+        <div class="grid grid-4 mb-24" id="kpi-container">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Status Geral -->
+        <div class="grid grid-2 mb-24">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">⚡ Status do Marketing</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div>
+                <div class="flex justify-between mb-4">
+                  <span class="text-sm">SEO — Checklist técnico</span>
+                  <span class="text-sm text-muted" id="dash-seo-progress">0/15 itens</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="dash-seo-bar" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-4">
+                  <span class="text-sm">Integrações configuradas</span>
+                  <span class="text-sm text-muted" id="dash-int-count">0 de 6</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill blue" id="dash-int-bar" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-4">
+                  <span class="text-sm">Conteúdo publicado (mês)</span>
+                  <span class="text-sm text-muted">0 / 8 planejados</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill green" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🎯 Próximas Ações Prioritárias</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div class="flex items-center gap-12" style="padding:8px;border-radius:8px;background:var(--bg);cursor:pointer" onclick="navigate('integrations')">
+                <span style="font-size:18px">🔗</span>
+                <div style="flex:1">
+                  <div class="text-sm font-bold">Configurar Google Analytics</div>
+                  <div class="text-xs text-muted">Base para todas as decisões de dados</div>
+                </div>
+                <span class="badge badge-orange">Alta</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:8px;border-radius:8px;background:var(--bg);cursor:pointer" onclick="navigate('integrations')">
+                <span style="font-size:18px">🔍</span>
+                <div style="flex:1">
+                  <div class="text-sm font-bold">Criar perfil no Google Meu Negócio</div>
+                  <div class="text-xs text-muted">Essencial para buscas locais em Fortaleza</div>
+                </div>
+                <span class="badge badge-orange">Alta</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:8px;border-radius:8px;background:var(--bg);cursor:pointer" onclick="navigate('content')">
+                <span style="font-size:18px">✍️</span>
+                <div style="flex:1">
+                  <div class="text-sm font-bold">Publicar primeiro artigo do blog</div>
+                  <div class="text-xs text-muted">KW: "pedreiro em Fortaleza" — 1.600 buscas/mês</div>
+                </div>
+                <span class="badge badge-orange">Alta</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:8px;border-radius:8px;background:var(--bg);cursor:pointer" onclick="navigate('social')">
+                <span style="font-size:18px">📱</span>
+                <div style="flex:1">
+                  <div class="text-sm font-bold">Criar calendário de posts no Instagram</div>
+                  <div class="text-xs text-muted">Consistência é chave para crescer o canal</div>
+                </div>
+                <span class="badge badge-yellow">Média</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-header">
+          <h2>⚡ Acesso Rápido</h2>
+        </div>
+        <div class="quick-action-grid mb-24">
+          <div class="quick-action" onclick="navigate('seo')">
+            <div class="qa-icon" style="background:#E8F5E9">🔍</div>
+            <div><div class="qa-label">SEO</div><div class="qa-sub">Palavras-chave e checklist</div></div>
+          </div>
+          <div class="quick-action" onclick="navigate('paid')">
+            <div class="qa-icon" style="background:#E3F2FD">🎯</div>
+            <div><div class="qa-label">Tráfego Pago</div><div class="qa-sub">Campanhas Google & Meta</div></div>
+          </div>
+          <div class="quick-action" onclick="navigate('content')">
+            <div class="qa-icon" style="background:#FFF3E0">✍️</div>
+            <div><div class="qa-label">Conteúdo</div><div class="qa-sub">Blog e calendário</div></div>
+          </div>
+          <div class="quick-action" onclick="navigate('social')">
+            <div class="qa-icon" style="background:#F3E5F5">📱</div>
+            <div><div class="qa-label">Redes Sociais</div><div class="qa-sub">Instagram e posts</div></div>
+          </div>
+          <div class="quick-action" onclick="navigate('email')">
+            <div class="qa-icon" style="background:#FFF8E1">✉️</div>
+            <div><div class="qa-label">Email</div><div class="qa-sub">Automações e campanhas</div></div>
+          </div>
+          <div class="quick-action" onclick="navigate('analytics')">
+            <div class="qa-icon" style="background:#FCE4EC">📈</div>
+            <div><div class="qa-label">Análise</div><div class="qa-sub">Métricas e funil</div></div>
+          </div>
+          <div class="quick-action" onclick="navigate('integrations')">
+            <div class="qa-icon" style="background:var(--primary-light)">🔗</div>
+            <div><div class="qa-label">Integrações</div><div class="qa-sub">Google, Meta e mais</div></div>
+          </div>
+        </div>
+
+        <!-- Strategy Overview -->
+        <div class="section-header">
+          <h2>🗺️ Visão das Estratégias</h2>
+          <p>Resumo de cada área de marketing com foco no estágio atual do Romi.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="strategy-card" onclick="navigate('seo')">
+            <div class="strategy-card-header">
+              <div class="strategy-icon" style="background:#E8F5E9">🔍</div>
+              <div>
+                <div class="strategy-title">SEO — Busca Orgânica</div>
+                <span class="badge badge-yellow">Em estruturação</span>
+              </div>
+            </div>
+            <div class="strategy-card-body">
+              <div class="strategy-desc">Foco em palavras-chave locais de Fortaleza com alto volume e baixa concorrência. Potencial de tráfego orgânico recorrente sem custo por clique.</div>
+            </div>
+          </div>
+          <div class="strategy-card" onclick="navigate('paid')">
+            <div class="strategy-card-header">
+              <div class="strategy-icon" style="background:#E3F2FD">🎯</div>
+              <div>
+                <div class="strategy-title">Tráfego Pago</div>
+                <span class="badge badge-gray">Não iniciado</span>
+              </div>
+            </div>
+            <div class="strategy-card-body">
+              <div class="strategy-desc">5 campanhas estruturadas para Google Ads e Meta Ads. Foco em captura de usuários e profissionais em Fortaleza com orçamento controlado.</div>
+            </div>
+          </div>
+          <div class="strategy-card" onclick="navigate('content')">
+            <div class="strategy-card-header">
+              <div class="strategy-icon" style="background:#FFF3E0">✍️</div>
+              <div>
+                <div class="strategy-title">Marketing de Conteúdo</div>
+                <span class="badge badge-yellow">Em andamento</span>
+              </div>
+            </div>
+            <div class="strategy-card-body">
+              <div class="strategy-desc">Blog com 10 pautas estratégicas mapeadas. Conteúdo para donos de casa e profissionais. Suporte ao SEO e construção de autoridade.</div>
+            </div>
+          </div>
+          <div class="strategy-card" onclick="navigate('social')">
+            <div class="strategy-card-header">
+              <div class="strategy-icon" style="background:#F3E5F5">📱</div>
+              <div>
+                <div class="strategy-title">Redes Sociais</div>
+                <span class="badge badge-yellow">Em andamento</span>
+              </div>
+            </div>
+            <div class="strategy-card-body">
+              <div class="strategy-desc">Instagram como canal principal. 8 formatos de conteúdo mapeados para engajamento, educação e prova social. Calendário editorial mensal.</div>
+            </div>
+          </div>
+          <div class="strategy-card" onclick="navigate('email')">
+            <div class="strategy-card-header">
+              <div class="strategy-icon" style="background:#FFF8E1">✉️</div>
+              <div>
+                <div class="strategy-title">Email Marketing</div>
+                <span class="badge badge-gray">Não iniciado</span>
+              </div>
+            </div>
+            <div class="strategy-card-body">
+              <div class="strategy-desc">4 fluxos de automação prontos: boas-vindas (donos/profissionais), reengajamento de inativos e pós-serviço. Baixo custo, alto impacto.</div>
+            </div>
+          </div>
+          <div class="strategy-card" onclick="navigate('analytics')">
+            <div class="strategy-card-header">
+              <div class="strategy-icon" style="background:#FCE4EC">📈</div>
+              <div>
+                <div class="strategy-title">Análise de Dados</div>
+                <span class="badge badge-gray">Não configurado</span>
+              </div>
+            </div>
+            <div class="strategy-card-body">
+              <div class="strategy-desc">Funil de conversão, métricas-chave e painel de performance. Depende da configuração das integrações para exibir dados reais.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           SEO
+      ================================================ -->
+      <div class="page" id="page-seo">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:#E8F5E9">🔍</span> SEO — Otimização para Busca</h2>
+          <p>Estratégia focada em buscas locais de Fortaleza. Baixa concorrência + alto volume = oportunidade real.</p>
+        </div>
+
+        <div class="tip-box mb-24">
+          <span class="tip-icon">💡</span>
+          <div class="tip-text">
+            <strong>Por onde começar:</strong> Primeiro, configure o Google Search Console e o Google Meu Negócio. São gratuitos e geram resultados rápidos para buscas locais. Depois, publique os primeiros artigos do blog com as palavras-chave de alta prioridade listadas abaixo.
+          </div>
+        </div>
+
+        <div class="tabs" data-group="seo">
+          <div class="tab active" data-target="seo-tab-checklist">✅ Checklist Técnico</div>
+          <div class="tab" data-target="seo-tab-keywords">🔑 Palavras-chave</div>
+          <div class="tab" data-target="seo-tab-local">📍 SEO Local</div>
+        </div>
+
+        <!-- Checklist Tab -->
+        <div class="tab-content active" id="seo-tab-checklist" data-group="seo">
+          <div class="card mb-20">
+            <div class="card-header">
+              <div>
+                <div class="card-title">✅ Checklist de SEO Técnico</div>
+                <div class="card-subtitle">Clique em cada item para marcar como concluído.</div>
+              </div>
+              <div class="flex items-center gap-12">
+                <select id="seo-filter" class="btn btn-outline btn-sm" style="padding:6px 12px;cursor:pointer">
+                  <option value="all">Todos</option>
+                  <option value="técnico">Técnico</option>
+                  <option value="local">SEO Local</option>
+                  <option value="on-page">On-Page</option>
+                  <option value="conteúdo">Conteúdo</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mb-16">
+              <span class="text-sm text-muted" id="seo-progress-label">0 de 15 itens concluídos</span>
+              <div class="progress-bar" style="width:200px"><div class="progress-fill" id="seo-progress-fill" style="width:0%"></div></div>
+            </div>
+            <div class="checklist" id="seo-checklist">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Keywords Tab -->
+        <div class="tab-content" id="seo-tab-keywords" data-group="seo">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🔑 Palavras-chave Estratégicas</div>
+              <div class="flex gap-8">
+                <span class="badge badge-blue">Volume mensal no Google</span>
+                <span class="badge badge-gray">Dificuldade 0–100</span>
+              </div>
+            </div>
+            <div class="alert alert-info mb-16">
+              <span>ℹ️</span>
+              <span>Priorize palavras com <strong>alta prioridade</strong> primeiro — alto volume de busca com baixa concorrência. Instale o <strong>Google Search Console</strong> para monitorar suas posições reais.</span>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Palavra-chave</th>
+                    <th>Volume/mês</th>
+                    <th>Dificuldade</th>
+                    <th>Intenção</th>
+                    <th>Público</th>
+                    <th>Prioridade</th>
+                    <th>Posição atual</th>
+                  </tr>
+                </thead>
+                <tbody id="keywords-tbody">
+                  <!-- Rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEO Local Tab -->
+        <div class="tab-content" id="seo-tab-local" data-group="seo">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">📍 Google Meu Negócio</div>
+                <span class="badge badge-orange">Alta prioridade</span>
+              </div>
+              <div class="checklist">
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Criar perfil no Google Meu Negócio</div><div class="check-desc">business.google.com — Gratuito e essencial</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Preencher todas as informações</div><div class="check-desc">Nome, endereço, telefone, horário, site</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Adicionar fotos da plataforma / equipe</div><div class="check-desc">Mínimo 5 fotos de qualidade</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Selecionar categorias corretas</div><div class="check-desc">Principal: "Marketplace de Serviços" / "Serviços de Construção"</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Publicar pelo menos 1 post por semana</div><div class="check-desc">Manter o perfil ativo melhora o ranqueamento local</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Solicitar avaliações aos primeiros usuários</div><div class="check-desc">Meta: 10 avaliações nos primeiros 3 meses</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Responder todas as avaliações</div><div class="check-desc">Positivas e negativas — mostra profissionalismo</div></div></div>
+              </div>
+            </div>
+            <div>
+              <div class="card mb-20">
+                <div class="card-header">
+                  <div class="card-title">🏙️ Estratégia de SEO Local</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div class="alert alert-info">
+                    <span>🎯</span>
+                    <span><strong>Foco geográfico:</strong> Fortaleza e Região Metropolitana. Toda palavra-chave deve incluir a cidade ou o bairro quando possível.</span>
+                  </div>
+                  <div style="font-size:13px;color:var(--text);line-height:1.7">
+                    <strong>Estratégia de conteúdo local:</strong><br>
+                    • Criar páginas específicas por bairro (ex: /pedreiro-aldeota, /eletricista-meireles)<br>
+                    • Publicar guias de preços de serviços em Fortaleza<br>
+                    • Citar referências locais no conteúdo (bairros, regionalismos)<br>
+                    • Buscar parcerias com blogs e portais cearenses (backlinks)
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-title mb-12">📌 Palavras por Bairro (potencial)</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  ${['Meireles','Aldeota','Messejana','Parangaba','Benfica','Montese','Maraponga','Conjunto Ceará','Fátima','José de Alencar','Varjota','Dionísio Torres'].map(b => `<span class="badge badge-blue">${b}</span>`).join('')}
+                </div>
+                <div class="text-xs text-muted mt-12">Criar conteúdo específico por bairro gera tráfego altamente qualificado e pouco competitivo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           TRÁFEGO PAGO
+      ================================================ -->
+      <div class="page" id="page-paid">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:#E3F2FD">🎯</span> Tráfego Pago</h2>
+          <p>Campanhas estruturadas para Google Ads e Meta Ads. Conecte as integrações para ativar e monitorar.</p>
+        </div>
+
+        <div class="tip-box mb-24">
+          <span class="tip-icon">💡</span>
+          <div class="tip-text">
+            <strong>Estratégia de início:</strong> Comece com orçamento pequeno (R$ 20-30/dia por campanha) para testar. O objetivo inicial não é escala — é aprender o que funciona no seu público específico de Fortaleza antes de aumentar o investimento.
+          </div>
+        </div>
+
+        <div class="grid grid-3 mb-24">
+          <div class="kpi-card blue">
+            <div class="kpi-header"><span class="kpi-icon">💰</span><span class="kpi-trend neutral">—</span></div>
+            <div class="kpi-value">R$ 0</div>
+            <div class="kpi-label">Gasto total em anúncios</div>
+          </div>
+          <div class="kpi-card orange">
+            <div class="kpi-header"><span class="kpi-icon">👁️</span><span class="kpi-trend neutral">—</span></div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-label">Impressões totais</div>
+          </div>
+          <div class="kpi-card green">
+            <div class="kpi-header"><span class="kpi-icon">🔀</span><span class="kpi-trend neutral">—</span></div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-label">Conversões por anúncios</div>
+          </div>
+        </div>
+
+        <div class="alert alert-warning mb-24">
+          <span>⚠️</span>
+          <span>Métricas reais aparecem após conectar <strong>Google Ads</strong> e <strong>Meta Ads</strong> na seção de Integrações. As campanhas abaixo são estruturas estratégicas prontas para serem criadas nas plataformas.</span>
+        </div>
+
+        <div class="tabs" data-group="paid">
+          <div class="tab active" data-target="paid-tab-google">🎯 Google Ads</div>
+          <div class="tab" data-target="paid-tab-meta">📱 Meta Ads</div>
+          <div class="tab" data-target="paid-tab-guide">📖 Guia de Configuração</div>
+        </div>
+
+        <div class="tab-content active" id="paid-tab-google" data-group="paid">
+          <div id="campaigns-list"><!-- Rendered by JS --></div>
+        </div>
+
+        <div class="tab-content" id="paid-tab-meta" data-group="paid">
+          <!-- Meta campaigns rendered inside campaigns-list for now; separated by platform -->
+          <div id="campaigns-list-meta">
+            <div class="alert alert-info mb-16">
+              <span>📱</span>
+              <span>As campanhas do Meta Ads (Facebook/Instagram) estão listadas na aba "Tráfego Pago" junto às do Google. Use os filtros abaixo para visualizar separadamente.</span>
+            </div>
+            <div class="tip-box">
+              <span class="tip-icon">📱</span>
+              <div class="tip-text">
+                <strong>Meta Ads — Vantagens para o Romi:</strong> segmentação por interesses (construção, ferramentas, reforma) + geolocalização precisa em Fortaleza. Ótimo para awareness e captura de profissionais, que são mais ativos no Facebook/Instagram do que no Google Search.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="paid-tab-guide" data-group="paid">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-title mb-16">🎯 Como estruturar um anúncio eficaz</div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div>
+                  <div class="text-xs text-muted mb-4">1. TÍTULO (até 30 caracteres)</div>
+                  <div style="background:var(--bg);border-radius:8px;padding:10px;font-size:13px;font-style:italic">"Pedreiro Confiável em Fortaleza"</div>
+                </div>
+                <div>
+                  <div class="text-xs text-muted mb-4">2. DESCRIÇÃO (até 90 caracteres)</div>
+                  <div style="background:var(--bg);border-radius:8px;padding:10px;font-size:13px;font-style:italic">"Encontre profissionais avaliados. Solicite orçamento grátis pelo Romi."</div>
+                </div>
+                <div>
+                  <div class="text-xs text-muted mb-4">3. CTA RECOMENDADO</div>
+                  <div style="background:var(--primary-light);border-radius:8px;padding:10px;font-size:13px;font-weight:700;color:var(--primary)">"Solicitar Orçamento" ou "Cadastre-se Grátis"</div>
+                </div>
+                <div>
+                  <div class="text-xs text-muted mb-4">4. PÁGINA DE DESTINO</div>
+                  <div style="font-size:13px;line-height:1.6">Cada campanha deve ir para uma página específica (não a home). Ex: campanha de pedreiro → página de pedreiros em Fortaleza.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title mb-16">📊 Métricas para monitorar</div>
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr><th>Métrica</th><th>O que é</th><th>Meta inicial</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>CTR</strong></td><td>Taxa de cliques no anúncio</td><td>&gt; 3%</td></tr>
+                    <tr><td><strong>CPC</strong></td><td>Custo por clique</td><td>&lt; R$ 2,50</td></tr>
+                    <tr><td><strong>CPA</strong></td><td>Custo por cadastro</td><td>&lt; R$ 15</td></tr>
+                    <tr><td><strong>CVR</strong></td><td>Taxa de conversão da página</td><td>&gt; 8%</td></tr>
+                    <tr><td><strong>ROAS</strong></td><td>Retorno sobre investimento</td><td>&gt; 3x (fase de escala)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="alert alert-info mt-16">
+                <span>💡</span>
+                <span>Nos primeiros 30 dias, foque em <strong>aprender</strong>, não em lucrar. Teste 2-3 variações de anúncio por campanha.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           MARKETING DE CONTEÚDO
+      ================================================ -->
+      <div class="page" id="page-content">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:#FFF3E0">✍️</span> Marketing de Conteúdo</h2>
+          <p>Blog e conteúdo editorial para atrair tráfego orgânico e construir autoridade no mercado de construção.</p>
+        </div>
+
+        <div class="tip-box mb-24">
+          <span class="tip-icon">✍️</span>
+          <div class="tip-text">
+            <strong>Por que conteúdo importa para o Romi:</strong> Cada artigo publicado é um ativo permanente. Um guia sobre "quanto custa contratar um pedreiro em Fortaleza" pode gerar cadastros de usuários por meses sem custo adicional. Consistência é mais importante do que perfeição.
+          </div>
+        </div>
+
+        <div class="tabs" data-group="content">
+          <div class="tab active" data-target="content-tab-calendar">📅 Calendário</div>
+          <div class="tab" data-target="content-tab-blog">📝 Pautas do Blog</div>
+          <div class="tab" data-target="content-tab-strategy">🗺️ Estratégia</div>
+        </div>
+
+        <!-- Calendar Tab -->
+        <div class="tab-content active" id="content-tab-calendar" data-group="content">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📅 Calendário Editorial</div>
+              <div class="flex gap-8 items-center">
+                <span id="calendar-month" style="font-size:14px;font-weight:600;color:var(--text-muted)"></span>
+                <div class="flex gap-8">
+                  <span class="badge" style="background:#E8EAF6;color:#3949AB">🟦 Instagram</span>
+                  <span class="badge" style="background:#E8F5E9;color:#2E7D32">🟩 Blog</span>
+                  <span class="badge" style="background:#FFF3E0;color:#E65100">🟧 Email</span>
+                  <span class="badge" style="background:#FCE4EC;color:#C62828">🟥 Anúncio</span>
+                </div>
+              </div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Ideas Tab -->
+        <div class="tab-content" id="content-tab-blog" data-group="content">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📝 Pautas do Blog</div>
+              <button class="btn btn-primary btn-sm" onclick="toast('Em breve: criação de pautas personalizadas!','info')">+ Nova Pauta</button>
+            </div>
+            <div class="alert alert-success mb-16">
+              <span>✅</span>
+              <span>Todas as pautas foram mapeadas com a palavra-chave alvo e o público principal. <strong>Priorize as de "Alta prioridade"</strong> para resultados mais rápidos em SEO.</span>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Título do artigo</th><th>Público</th><th>Formato</th><th>Prioridade</th><th>Status</th><th></th></tr>
+                </thead>
+                <tbody id="blog-ideas-list"><!-- Rendered by JS --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategy Tab -->
+        <div class="tab-content" id="content-tab-strategy" data-group="content">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-title mb-16">🎯 Pilares de Conteúdo</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="padding:14px;border-radius:10px;background:var(--bg);border-left:4px solid var(--info)">
+                  <div class="font-bold text-sm mb-4">1. Educação — Para Donos de Casa</div>
+                  <div class="text-xs text-muted">Guias práticos, checklists, comparativos de preço. Responde as dúvidas do usuário antes de contratar. Gera confiança e tráfego orgânico.</div>
+                </div>
+                <div style="padding:14px;border-radius:10px;background:var(--bg);border-left:4px solid var(--success)">
+                  <div class="font-bold text-sm mb-4">2. Capacitação — Para Profissionais</div>
+                  <div class="text-xs text-muted">Dicas para conseguir mais clientes, organizar agenda, divulgar serviços online. Atrai e fideliza profissionais na plataforma.</div>
+                </div>
+                <div style="padding:14px;border-radius:10px;background:var(--bg);border-left:4px solid var(--primary)">
+                  <div class="font-bold text-sm mb-4">3. Institucional — Sobre o Romi</div>
+                  <div class="text-xs text-muted">Como funciona a plataforma, diferenciais, cases de sucesso. Construção de marca e SEO com palavras-chave de marca.</div>
+                </div>
+                <div style="padding:14px;border-radius:10px;background:var(--bg);border-left:4px solid var(--accent)">
+                  <div class="font-bold text-sm mb-4">4. Local — Fortaleza e Região</div>
+                  <div class="text-xs text-muted">Conteúdo específico por bairro, guias de preços locais. SEO local é a maior oportunidade para o Romi neste momento.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title mb-16">📋 Estrutura de um bom artigo</div>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+                <div class="flex items-center gap-12">
+                  <span style="width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
+                  <div><strong>Título com palavra-chave</strong> — Máx. 60 caracteres. Ex: "Como contratar pedreiro em Fortaleza: guia completo"</div>
+                </div>
+                <div class="flex items-center gap-12">
+                  <span style="width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
+                  <div><strong>Introdução</strong> — 2-3 parágrafos. Identifica o problema do leitor. Inclui palavra-chave no 1º parágrafo.</div>
+                </div>
+                <div class="flex items-center gap-12">
+                  <span style="width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
+                  <div><strong>Desenvolvimento</strong> — H2s com subpalavras-chave. Linguagem simples, direta. Listas e subtítulos facilitam leitura.</div>
+                </div>
+                <div class="flex items-center gap-12">
+                  <span style="width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">4</span>
+                  <div><strong>CTA</strong> — No final, sempre. Ex: "Precisa de um pedreiro agora? Encontre no Romi."</div>
+                </div>
+                <div class="flex items-center gap-12">
+                  <span style="width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">5</span>
+                  <div><strong>Mínimo 800 palavras</strong> — Artigos mais longos ranqueiam melhor. Meta ideal: 1.200-1.500 palavras.</div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="alert alert-success">
+                <span>⏱️</span>
+                <span>Frequência recomendada: <strong>2 artigos por mês</strong> no início. Consistência é mais importante do que volume.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           REDES SOCIAIS
+      ================================================ -->
+      <div class="page" id="page-social">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:#F3E5F5">📱</span> Redes Sociais</h2>
+          <p>Instagram como canal principal. Foco em prova social, educação e construção de comunidade em Fortaleza.</p>
+        </div>
+
+        <div class="tip-box mb-24">
+          <span class="tip-icon">📱</span>
+          <div class="tip-text">
+            <strong>Foco no Instagram:</strong> Seu público está no Instagram. Consistência (3-4 posts/semana) supera qualidade pontual. Misture formatos: carrossel (alcance), reels (descoberta), stories (engajamento diário).
+          </div>
+        </div>
+
+        <div class="tabs" data-group="social">
+          <div class="tab active" data-target="social-tab-ideas">💡 Ideias de Conteúdo</div>
+          <div class="tab" data-target="social-tab-strategy">📋 Estratégia</div>
+          <div class="tab" data-target="social-tab-hashtags">🏷️ Hashtags</div>
+        </div>
+
+        <div class="tab-content active" id="social-tab-ideas" data-group="social">
+          <div class="grid grid-3" id="social-ideas-list"><!-- Rendered by JS --></div>
+        </div>
+
+        <div class="tab-content" id="social-tab-strategy" data-group="social">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-title mb-16">📊 Mix de Conteúdo Recomendado</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="flex:1">
+                    <div class="text-sm font-bold">Educativo</div>
+                    <div class="text-xs text-muted">Dicas, checklists, guias rápidos</div>
+                  </div>
+                  <span style="font-size:18px;font-weight:800;color:var(--info)">40%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="flex:1">
+                    <div class="text-sm font-bold">Prova Social</div>
+                    <div class="text-xs text-muted">Depoimentos, antes/depois, cases</div>
+                  </div>
+                  <span style="font-size:18px;font-weight:800;color:var(--success)">30%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="flex:1">
+                    <div class="text-sm font-bold">Engajamento</div>
+                    <div class="text-xs text-muted">Enquetes, perguntas, bastidores</div>
+                  </div>
+                  <span style="font-size:18px;font-weight:800;color:var(--accent)">20%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="flex:1">
+                    <div class="text-sm font-bold">Institucional</div>
+                    <div class="text-xs text-muted">Sobre o Romi, novidades, equipe</div>
+                  </div>
+                  <span style="font-size:18px;font-weight:800;color:var(--primary)">10%</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title mb-16">🕐 Melhores horários para postar</div>
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+                <div style="display:flex;justify-content:space-between;padding:8px;background:var(--bg);border-radius:8px">
+                  <span>Segunda a Sexta</span>
+                  <strong>18h – 21h</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px;background:var(--bg);border-radius:8px">
+                  <span>Sábado</span>
+                  <strong>10h – 12h</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px;background:var(--bg);border-radius:8px">
+                  <span>Domingo</span>
+                  <strong>Evitar (baixo alcance)</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px;background:var(--bg);border-radius:8px">
+                  <span>Stories</span>
+                  <strong>8h–9h ou 20h–22h</strong>
+                </div>
+              </div>
+              <div class="alert alert-info mt-12">
+                <span>💡</span>
+                <span>Use o Instagram Insights para confirmar os horários específicos do seu público após 30 dias de posts.</span>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-20">
+            <div class="card-title mb-16">✏️ Modelo de legenda para posts</div>
+            <div class="grid grid-2" style="gap:16px">
+              <div>
+                <div class="text-xs text-muted mb-8">ESTRUTURA RECOMENDADA</div>
+                <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.6">
+                  <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>1. Gancho</strong> — Primeira frase que para o scroll. Ex: "Você sabe quanto custa contratar um pedreiro?" ou "Esse erro pode dobrar o custo da sua reforma."</div>
+                  <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>2. Conteúdo</strong> — Valor direto, sem enrolação. Listas funcionam bem no Instagram.</div>
+                  <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>3. CTA</strong> — "Salva esse post", "Marca quem precisa" ou "Link na bio para contratar".</div>
+                  <div style="padding:10px;background:var(--bg);border-radius:8px"><strong>4. Hashtags</strong> — 5 a 10 relevantes. Misture grandes e nichadas.</div>
+                </div>
+              </div>
+              <div>
+                <div class="text-xs text-muted mb-8">EXEMPLO PRONTO</div>
+                <div style="background:var(--bg);border-radius:10px;padding:16px;font-size:13px;line-height:1.7;font-style:italic;border:1px solid var(--border)">
+                  Antes de contratar qualquer pedreiro, faça essas 3 perguntas. 👇<br><br>
+                  1️⃣ Tem referências de trabalhos anteriores?<br>
+                  2️⃣ O orçamento é detalhado por etapa?<br>
+                  3️⃣ Qual o prazo estimado?<br><br>
+                  Salva esse post e usa quando precisar! 📌<br><br>
+                  No Romi, todos os profissionais são avaliados por clientes reais. Link na bio 🔗<br><br>
+                  <span style="color:var(--info)">#PedreiroCE #ReformaFortaleza #Romi #ConstruçãoCivil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="social-tab-hashtags" data-group="social">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-title mb-12">🏷️ Hashtags por Público</div>
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <div>
+                  <div class="text-xs text-muted mb-8">DONOS DE CASA</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    ${['#ReformaResidencial','#PedreiroFortaleza','#EletricistaCE','#ManutençãoCasa','#ReformaCE','#CasaFortaleza','#PinturaCasa','#ServiçosDeCasa','#ReformaApê','#ConsertosEmCasa'].map(h => `<span class="badge badge-blue">${h}</span>`).join('')}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-xs text-muted mb-8">PROFISSIONAIS</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    ${['#PedreiroCE','#EletricistaBr','#Pedreiro','#ConstruçãoCivil','#ArtificeCE','#TrabalhoConstrução','#ProfissionalConstrução','#OficinaDeObra'].map(h => `<span class="badge badge-green">${h}</span>`).join('')}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-xs text-muted mb-8">FORTALEZA / LOCAL</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    ${['#Fortaleza','#FotalezaCE','#Ceará','#FortalezaCity','#VidaEmFortaleza','#NegóciosCE','#EmpreendedorismoFortaleza'].map(h => `<span class="badge badge-orange">${h}</span>`).join('')}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-xs text-muted mb-8">MARCA</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    ${['#Romi','#RomiApp','#RomiFortaleza','#ConectaRomi'].map(h => `<span class="badge badge-gray">${h}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title mb-12">📊 Como usar hashtags estrategicamente</div>
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.6">
+                <div class="alert alert-info">
+                  <span>🎯</span>
+                  <span>Use <strong>5 a 10 hashtags</strong> por post. Mais do que isso não ajuda e pode parecer spam.</span>
+                </div>
+                <div style="padding:12px;background:var(--bg);border-radius:8px">
+                  <div class="font-bold mb-4">Mix recomendado por post:</div>
+                  <div>• 2-3 hashtags grandes (#PedreiroFortaleza)</div>
+                  <div>• 2-3 hashtags médias (#ReformaCE)</div>
+                  <div>• 1-2 hashtags de nicho (#ManutençãoCasaFortaleza)</div>
+                  <div>• 1 hashtag de marca (#Romi)</div>
+                </div>
+                <div style="padding:12px;background:var(--bg);border-radius:8px">
+                  <div class="font-bold mb-4">Hashtags nos comentários:</div>
+                  <div>Poste a legenda limpa e adicione as hashtags no 1º comentário para manter a legenda mais profissional.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           EMAIL MARKETING
+      ================================================ -->
+      <div class="page" id="page-email">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:#FFF8E1">✉️</span> Email Marketing & Automação</h2>
+          <p>Fluxos automáticos para ativar, engajar e reter usuários e profissionais. Baixo custo, alto retorno.</p>
+        </div>
+
+        <div class="tip-box mb-24">
+          <span class="tip-icon">✉️</span>
+          <div class="tip-text">
+            <strong>Por que priorizar email:</strong> Email tem o maior ROI do marketing digital (média de R$ 36 para cada R$ 1 investido). Os fluxos abaixo são automáticos — você configura uma vez e funcionam indefinidamente sem trabalho manual.
+          </div>
+        </div>
+
+        <div class="tabs" data-group="email">
+          <div class="tab active" data-target="email-tab-flows">⚡ Fluxos de Automação</div>
+          <div class="tab" data-target="email-tab-campaigns">📧 Campanhas Manuais</div>
+          <div class="tab" data-target="email-tab-tips">✅ Boas Práticas</div>
+        </div>
+
+        <div class="tab-content active" id="email-tab-flows" data-group="email">
+          <div class="alert alert-warning mb-20">
+            <span>⚙️</span>
+            <span>Para ativar esses fluxos, conecte uma plataforma de email (Mailchimp, ActiveCampaign, etc.) na seção de Integrações e integre com o sistema de cadastro do Romi.</span>
+          </div>
+          <div id="email-flows-list"><!-- Rendered by JS --></div>
+        </div>
+
+        <div class="tab-content" id="email-tab-campaigns" data-group="email">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-title mb-16">📧 Campanhas Manuais Recomendadas</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="padding:14px;border-radius:10px;border:1.5px solid var(--border)">
+                  <div class="font-bold text-sm">Newsletter Semanal</div>
+                  <div class="text-xs text-muted mt-4">Frequência: toda sexta-feira. Conteúdo: 1 dica útil + destaque de profissional + novidade do Romi. Curto — máx. 300 palavras.</div>
+                </div>
+                <div style="padding:14px;border-radius:10px;border:1.5px solid var(--border)">
+                  <div class="font-bold text-sm">Campanha de Reengajamento Mensal</div>
+                  <div class="text-xs text-muted mt-4">Para usuários com +30 dias sem atividade. Oferecer algum benefício ou mostrar novos profissionais cadastrados perto deles.</div>
+                </div>
+                <div style="padding:14px;border-radius:10px;border:1.5px solid var(--border)">
+                  <div class="font-bold text-sm">Anúncio de Novidades do Produto</div>
+                  <div class="text-xs text-muted mt-4">Quando lançar novas funcionalidades. Enviar para toda a base. Simples, direto, 1 CTA claro.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title mb-16">📊 Métricas de Email</div>
+              <div class="table-wrapper">
+                <table>
+                  <thead><tr><th>Métrica</th><th>Meta</th><th>Se abaixo, ação</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Taxa de abertura</strong></td><td>&gt; 30%</td><td>Melhorar assunto do email</td></tr>
+                    <tr><td><strong>Taxa de clique</strong></td><td>&gt; 5%</td><td>Melhorar CTA e conteúdo</td></tr>
+                    <tr><td><strong>Descadastros</strong></td><td>&lt; 0.5%</td><td>Reduzir frequência de envio</td></tr>
+                    <tr><td><strong>Entregabilidade</strong></td><td>&gt; 95%</td><td>Limpar lista / verificar domínio</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="email-tab-tips" data-group="email">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-title mb-16">✅ Boas Práticas de Email</div>
+              <div class="checklist">
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Assunto curto (até 50 caracteres)</div><div class="check-desc">Assuntos longos são cortados no celular</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Personalizar com nome do usuário</div><div class="check-desc">Aumenta taxa de abertura em até 26%</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">1 CTA por email, no máximo 2</div><div class="check-desc">Múltiplos CTAs confundem e reduzem cliques</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Testar em mobile antes de enviar</div><div class="check-desc">+60% dos emails são lidos no celular</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Segmentar listas (usuários vs. profissionais)</div><div class="check-desc">Mensagens relevantes geram muito mais resultado</div></div></div>
+                <div class="check-item"><div class="check-box"></div><div><div class="check-label">Evitar palavras de spam no assunto</div><div class="check-desc">Ex: GRÁTIS, URGENTE, 100% — vão para spam</div></div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title mb-16">✉️ Exemplos de assuntos que funcionam</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="padding:10px 14px;background:var(--bg);border-radius:8px;font-size:13px;border-left:3px solid var(--success)">
+                  ✅ "Pedro, tem pedreiro disponível perto de você"
+                </div>
+                <div style="padding:10px 14px;background:var(--bg);border-radius:8px;font-size:13px;border-left:3px solid var(--success)">
+                  ✅ "Antes de começar sua reforma: leia isso"
+                </div>
+                <div style="padding:10px 14px;background:var(--bg);border-radius:8px;font-size:13px;border-left:3px solid var(--success)">
+                  ✅ "3 clientes solicitaram eletricista esta semana"
+                </div>
+                <div style="padding:10px 14px;background:var(--bg);border-radius:8px;font-size:13px;border-left:3px solid var(--danger)">
+                  ❌ "OFERTA ESPECIAL: cadastre-se GRÁTIS AGORA!!"
+                </div>
+                <div style="padding:10px 14px;background:var(--bg);border-radius:8px;font-size:13px;border-left:3px solid var(--danger)">
+                  ❌ "Não perca essa oportunidade única..."
+                </div>
+                <div class="text-xs text-muted mt-8">Assuntos que geram curiosidade genuína ou são específicos para o usuário sempre performam melhor.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           ANÁLISE DE DADOS
+      ================================================ -->
+      <div class="page" id="page-analytics">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:#FCE4EC">📈</span> Análise de Dados</h2>
+          <p>Funil de conversão, métricas-chave e performance das estratégias de marketing.</p>
+        </div>
+
+        <div class="alert alert-warning mb-24">
+          <span>⚠️</span>
+          <span>Para visualizar dados reais, conecte o <strong>Google Analytics 4</strong>, <strong>Google Ads</strong> e o <strong>Meta Ads</strong> na seção de Integrações. Por enquanto, os dados abaixo são estruturais — servem como guia de quais métricas monitorar.</span>
+        </div>
+
+        <!-- Funil -->
+        <div class="card mb-24">
+          <div class="card-header">
+            <div class="card-title">🔽 Funil de Conversão</div>
+            <span class="badge badge-gray">Aguardando dados reais</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px" id="funnel-container">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Métricas por canal -->
+        <div class="grid grid-2 mb-24">
+          <div class="card">
+            <div class="card-title mb-16">📊 Métricas por Canal</div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Canal</th><th>Sessões</th><th>Cadastros</th><th>Conversão</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>🔍 Orgânico (SEO)</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-gray">Sem dados</span></td></tr>
+                  <tr><td>🎯 Google Ads</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-gray">Sem dados</span></td></tr>
+                  <tr><td>📱 Meta Ads</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-gray">Sem dados</span></td></tr>
+                  <tr><td>📧 Email</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-gray">Sem dados</span></td></tr>
+                  <tr><td>💬 WhatsApp/Direto</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-gray">Sem dados</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title mb-16">🎯 KPIs Prioritários do Romi</div>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+              <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:8px">
+                <div><div class="font-bold">CAC — Custo de Aquisição</div><div class="text-xs text-muted">Quanto custa adquirir 1 usuário</div></div>
+                <div style="text-align:right"><div class="font-bold text-muted">Meta: &lt; R$ 15</div><div class="text-xs text-muted">—</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:8px">
+                <div><div class="font-bold">LTV — Valor do Ciclo de Vida</div><div class="text-xs text-muted">Receita gerada por usuário ativo</div></div>
+                <div style="text-align:right"><div class="font-bold text-muted">A definir</div><div class="text-xs text-muted">—</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:8px">
+                <div><div class="font-bold">Taxa de Retenção (30 dias)</div><div class="text-xs text-muted">Usuários que voltam após cadastro</div></div>
+                <div style="text-align:right"><div class="font-bold text-muted">Meta: &gt; 40%</div><div class="text-xs text-muted">—</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:8px">
+                <div><div class="font-bold">NPS — Satisfação</div><div class="text-xs text-muted">Indicação espontânea pelos usuários</div></div>
+                <div style="text-align:right"><div class="font-bold text-muted">Meta: &gt; 50</div><div class="text-xs text-muted">—</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reports Guide -->
+        <div class="card">
+          <div class="card-title mb-16">📅 Cadência de Relatórios Recomendada</div>
+          <div class="grid grid-3">
+            <div style="padding:16px;background:var(--bg);border-radius:10px;border:1.5px solid var(--border)">
+              <div style="font-size:20px;margin-bottom:8px">📋</div>
+              <div class="font-bold text-sm mb-4">Semanal (toda segunda)</div>
+              <div class="text-xs text-muted" style="line-height:1.6">Sessões do site, posts publicados, anúncios ativos, cadastros da semana. Revisão rápida — 15 min.</div>
+            </div>
+            <div style="padding:16px;background:var(--bg);border-radius:10px;border:1.5px solid var(--border)">
+              <div style="font-size:20px;margin-bottom:8px">📊</div>
+              <div class="font-bold text-sm mb-4">Mensal (dia 1)</div>
+              <div class="text-xs text-muted" style="line-height:1.6">KPIs completos, funil de conversão, performance por canal, CAC, melhores conteúdos. Decisões estratégicas.</div>
+            </div>
+            <div style="padding:16px;background:var(--bg);border-radius:10px;border:1.5px solid var(--border)">
+              <div style="font-size:20px;margin-bottom:8px">🗺️</div>
+              <div class="font-bold text-sm mb-4">Trimestral</div>
+              <div class="text-xs text-muted" style="line-height:1.6">Revisão da estratégia completa, comparação com metas, redefinição de prioridades e orçamento por canal.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           INTEGRAÇÕES
+      ================================================ -->
+      <div class="page" id="page-integrations">
+        <div class="section-header">
+          <h2><span class="icon-bg" style="background:var(--primary-light)">🔗</span> Integrações</h2>
+          <p>Conecte suas ferramentas de marketing para centralizar dados e automatizar processos.</p>
+        </div>
+
+        <div class="tip-box mb-24">
+          <span class="tip-icon">🔗</span>
+          <div class="tip-text">
+            <strong>Prioridade de configuração:</strong> <strong>(1)</strong> Google Analytics — base de tudo. <strong>(2)</strong> Google Search Console — essencial para SEO. <strong>(3)</strong> Meta Pixel — antes de qualquer anúncio no Instagram/Facebook. <strong>(4)</strong> Google Ads — ao iniciar campanhas pagas.
+          </div>
+        </div>
+
+        <div class="grid grid-2" id="integrations-list">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MODAL: Editar KPI
+══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-kpi">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">✏️ Atualizar Métrica</div>
+      <button class="modal-close" onclick="closeModal('modal-kpi')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label id="kpi-edit-label">Métrica</label>
+        <input type="text" id="kpi-edit-input" placeholder="Ex: 150 ou 12%" />
+      </div>
+      <div class="text-xs text-muted">Insira o valor atual da métrica. Pode ser um número, porcentagem ou qualquer formato que faça sentido.</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-kpi')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveKpi()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
