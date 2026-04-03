@@ -576,6 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAnalytics();
   renderDashboardChecklist();
   updateHeaderIntegrationStatus();
+  renderGA4Dashboard();
 
   // Start on dashboard
   navigate('dashboard');
