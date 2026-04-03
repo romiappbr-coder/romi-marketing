@@ -4,7 +4,7 @@
 // ============================================================
 
 // ── URL do Apps Script (preencher após deploy) ────────────
-const GA4_PROXY_URL = '';
+const GA4_PROXY_URL = 'https://script.google.com/macros/s/AKfycbyF5x96UReTPuEazBGwSANRhaacYvvoU8VDadyQAEmCz3dP0UVaBd-zDkVlYHzmLQ8AmQ/exec';
 
 // ── Utilitário de eventos ─────────────────────────────────
 function gaEvent(name, params = {}) {
