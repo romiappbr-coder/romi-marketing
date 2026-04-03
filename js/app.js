@@ -400,7 +400,9 @@ function renderIntegrations() {
           <button class="btn btn-ghost btn-sm" onclick="toggleIntDetails('${int.id}')">📋 Como configurar</button>
           ${status === 'connected'
             ? `<button class="btn btn-outline btn-sm" onclick="disconnectInt('${int.id}')">Desconectar</button>`
-            : `<button class="btn btn-primary btn-sm" onclick="connectInt('${int.id}')">Conectar</button>`}
+            : status === 'pending'
+              ? `<button class="btn btn-primary btn-sm" onclick="confirmInt('${int.id}')">✅ Confirmar conexão</button>`
+              : `<button class="btn btn-primary btn-sm" onclick="connectInt('${int.id}')">Conectar</button>`}
         </div>
       </div>
       <div id="int-details-${int.id}" style="display:none">
@@ -426,6 +428,13 @@ function connectInt(id) {
   renderIntegrations();
   toast('Siga os passos de configuração acima para conectar.', 'info');
   toggleIntDetails(id);
+  updateHeaderIntegrationStatus();
+}
+
+function confirmInt(id) {
+  STATE.setIntegrationStatus(id, 'connected');
+  renderIntegrations();
+  toast('Integração confirmada e ativa!', 'success');
   updateHeaderIntegrationStatus();
 }
 
